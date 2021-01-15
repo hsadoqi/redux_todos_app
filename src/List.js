@@ -1,46 +1,28 @@
 import React, {Component} from 'react'
 import Item from './Item'
+import ItemForm from './ItemForm'
 
 class List extends Component {
-
-    // static defaultProps = {
-    //     list: ["Sleep"]
-    // }
 
     constructor(props){
         super(props)
         this.state = {
-            list: ["Exercise", "Code"], 
-            otherKey: "Hello"
+            list: ["Exercise", "Code"]
         }
     }
 
     renderItems(){
-        return this.state.list.map(item => <Item item={item} potato={this.itemFunction}/>)
+        return this.state.list.map(item => <Item item={item}/>)
     }
 
-    // handleClick = () => {
-    //     this.setState((state, props) => {
-    //         return {
-    //             list: [...state.list, "Teaching"]
-    //         }
-    //     })
-
-    // }
-
-    itemFunction = (info) => {
-        console.log(info)
-        this.setState({
-            num: 1
-        })
+    submitItem(item){
+        this.setState({list: [...this.state.list, item.inputVal]})
     }
-
-
 
     render(){
-        console.log(this.state)
         return (
             <div>
+                <ItemForm submitItem={this.submitItem.bind(this)}/>
                 <ul>
                     {this.renderItems()}
                 </ul>
