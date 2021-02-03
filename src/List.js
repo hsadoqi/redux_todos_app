@@ -1,39 +1,13 @@
-import React, {Component} from 'react'
-import Item from './Item'
-import ItemForm from './ItemForm'
+// import React, { Component } from 'react'
 
-class List extends Component {
+// export default class List extends Component {
+//     render(){
+//         return (
+//             <li>{this.props.list.name}</li>
+//         )
+//     }
+// }
 
-    constructor(props){
-        super(props)
-        this.state = {
-            list: ["Exercise", "Code"]
-        }
-    }
-
-    renderItems(){
-        return this.state.list.map(item => <Item item={item}/>)
-    }
-
-    submitItem(item){
-        this.setState({list: [...this.state.list, item.inputVal]})
-    }
-
-    render(){
-        return (
-            <div>
-                <ItemForm submitItem={this.submitItem.bind(this)}/>
-                <ul>
-                    {this.renderItems()}
-                </ul>
-            </div>
-
-        )
-    }
+export default function List(props){
+    return <li>{props.list && props.list.name}</li>
 }
-
-List.defaultProps = {
-    list: ["Code"]
-}
-
-export default List
