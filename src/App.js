@@ -1,16 +1,15 @@
-import React, { Component } from 'react'
-import List from './List'
+import React from 'react'
+import ListContainer from './ListContainer'
+import Navbar from './Navbar'
 
-class App extends Component {
-
-  render(){
-    return (
-      <div className="App">
-        <h1>Hello </h1>
-        <List/>
-      </div>
-    );
-  }
+function App(){
+  return (
+    <>
+      <Navbar/>
+      <ListContainer/>
+    </>
+  )
 }
 
 export default App;
+

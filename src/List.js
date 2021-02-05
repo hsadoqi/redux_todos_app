@@ -1,39 +1,26 @@
-import React, {Component} from 'react'
-import Item from './Item'
-import ItemForm from './ItemForm'
+// import React, { Component } from 'react'
 
-class List extends Component {
+// export default class List extends Component {
+//     render(){
+//         return (
+//             <li>{this.props.list.name}</li>
+//         )
+//     }
+// }
 
-    constructor(props){
-        super(props)
-        this.state = {
-            list: ["Exercise", "Code"]
-        }
+import { connect } from 'react-redux'
+import deleteList from './actions/deleteList'
+import {withRouter} from 'react-router-dom'
+
+function List(props){
+    
+    const handleClick = () => {
+        props.deleteList(props.list.id)
+        props.history.push('/lists')
+
     }
 
-    renderItems(){
-        return this.state.list.map(item => <Item item={item}/>)
-    }
-
-    submitItem(item){
-        this.setState({list: [...this.state.list, item.inputVal]})
-    }
-
-    render(){
-        return (
-            <div>
-                <ItemForm submitItem={this.submitItem.bind(this)}/>
-                <ul>
-                    {this.renderItems()}
-                </ul>
-            </div>
-
-        )
-    }
+    return <li>{props.list && props.list.name}<button onClick={handleClick}>Delete</button></li>
 }
 
-List.defaultProps = {
-    list: ["Code"]
-}
-
-export default List
+export default withRouter(connect(null, { deleteList })(List))
