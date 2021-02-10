@@ -8,49 +8,14 @@ import fetchLists from './actions/fetchLists'
 
 class ListContainer extends PureComponent {
 
-    // constructor(props){
-    //     console.log("constructor")
-    //     super(props)
-    //     this.state = {
-    //         lists: []
-    //     }
-
-    //     // this.submitList = this.submitList.bind(this)
-    // }
 
     componentDidMount(){
-        const lists = [{name: "Grocery", id: 1}, {name: "Code", id: 2}, {name: "Errands", id: 3}]
-        this.props.fetchLists(lists)
+        this.props.fetchLists()
     }
 
-    // fetch(`http://localhost:3000/lists`)
-    // .then(res => res.json())
-    // .then(lists => {
-    //     this.setState({ lists })
-    //     this.setState((prevState) => ({loading: !prevState.loading}))
-    // })
-
-    // submitList(formData){
-    //     const list = {name: formData.inputVal}
-        
-    //     fetch(`http://localhost:3000/lists`, {
-    //         method: 'POST', 
-    //         headers: {
-    //             "content-type": "application/json", 
-    //             "accepts": "application/json"
-    //         }, 
-    //         body: JSON.stringify({ list })
-    //     }).then(res => res.json())
-    //     .then(list => {
-    //         this.setState((prevState) => {
-    //             return {lists: [...prevState.lists, list]}
-    //         })
-    //     })
-
-    // }
 
     render(){
-        // debugger
+        
         return (
             <>
                 <Switch>
@@ -67,12 +32,12 @@ class ListContainer extends PureComponent {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ lists }) => {
     return {
-        lists: state.lists
+        lists 
     }
 }
 
 
-export default connect(mapStateToProps, { fetchLists })(ListContainer)
+export default connect(mapStateToProps, {fetchLists})(ListContainer)
 

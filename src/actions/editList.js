@@ -1,7 +1,7 @@
-export default function addList(list){
+export default function editList(list){
     return (dispatch) => {
         const options = {
-            method: "POST", 
+            method: "PATCH", 
             headers: {
                 "Content-type": "application/json", 
                 "accept": "application/json"
@@ -9,10 +9,10 @@ export default function addList(list){
             body: JSON.stringify({list})
         }
 
-        fetch(`http://localhost:3000/lists`, options)
+        fetch(`http://localhost:3000/lists/${list.id}`, options)
         .then(res => res.json())
         .then(list => {
-            dispatch({type: "ADD_LIST", payload: list})
+            dispatch({type: "EDIT_LIST", payload: list})
         })
     }
 }

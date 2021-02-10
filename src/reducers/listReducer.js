@@ -13,6 +13,11 @@ export default function listReducer(state, action){
             return {
                 lists: newList
             }
+        case "EDIT_LIST": 
+            const editList = state.lists.map(list => list.id === action.payload.id ? action.payload : list)
+            return {
+                lists: editList
+            }
         default: 
             return state
     }
