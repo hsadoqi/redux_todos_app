@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
-import deleteList from './actions/deleteList'
+import {deleteList} from './actions/listActions'
 import {withRouter} from 'react-router-dom'
 import ListForm from './ListForm'
+import ItemContainer from './ItemContainer'
 
 function List(props){
     
@@ -13,8 +14,9 @@ function List(props){
 
     return (
     <>
-        <li>{props.list && props.list.name}<button onClick={handleClick}>Delete</button></li>
+        <li>{props.list && props.list.attributes.name}<button onClick={handleClick}>Delete</button></li>
         <ListForm list={props.list}/>
+        <ItemContainer list={props.list} />
     </>
     )
 }

@@ -1,7 +1,8 @@
-export default function listReducer(state, action){
+export default function listReducer(state=[], action){
     switch(action.type){
         case "FETCH_LISTS":
             return {
+                ...state, 
                 lists: action.payload
             }
         case "ADD_LIST":

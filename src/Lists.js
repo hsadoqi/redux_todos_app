@@ -6,7 +6,7 @@ export default class Lists extends PureComponent {
     render(){
         return (
             <ul>
-                {this.props.lists.map((list) => <Link to={`/lists/${list.id}`}><li>{list.name}</li></Link>)}
+                {this.props.lists.map((list) => <Link to={`/lists/${list.id}`}><li key={list.id}>{list && list.attributes.name}</li></Link>)}
             </ul>
         )
     }
@@ -14,5 +14,5 @@ export default class Lists extends PureComponent {
 
 
 Lists.defaultProps = {
-    lists: [{name: "anotha one"}]
+    lists: [{attributes: {name: "anotha one"}}]
 }

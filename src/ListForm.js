@@ -1,15 +1,14 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import addList from './actions/addList'
-import editList from './actions/editList'
+import {addList, editList} from './actions/listActions'
 
 class ListForm extends Component {
 
     constructor(props){
         super(props)
         this.state = {
-            name: this.props.list ? this.props.list.name : "",
+            name: this.props.list ? this.props.list.attributes.name : "",
             id: this.props.list ? this.props.list.id : ""
         }
     }
@@ -42,7 +41,6 @@ class ListForm extends Component {
     }
 
     render() {
-        // debugger
         return (
             <>
             {this.redirectOrRenderForm()}

@@ -4,7 +4,7 @@ import ListForm from './ListForm'
 import { Route, Switch } from 'react-router-dom'
 import List from './List'
 import {connect} from 'react-redux'
-import fetchLists from './actions/fetchLists'
+import {fetchLists} from './actions/listActions'
 
 class ListContainer extends PureComponent {
 
@@ -13,9 +13,8 @@ class ListContainer extends PureComponent {
         this.props.fetchLists()
     }
 
-
     render(){
-        
+
         return (
             <>
                 <Switch>
@@ -25,16 +24,17 @@ class ListContainer extends PureComponent {
                     <Route exact path="/lists/new">
                         <ListForm />
                     </Route>
-                    <Route exact path="/lists/:id" render={((routerProps) => <List list={this.props.lists.find(list => list.id === parseInt(routerProps.match.params.id))} /> ) }/>
+                    <Route exact path="/lists/:id" render={((routerProps) => <List list={this.props.lists.find(list => list.id === routerProps.match.params.id)} /> ) }/>
                 </Switch>
             </>
         )
     }
 }
 
-const mapStateToProps = ({ lists }) => {
+const mapStateToProps = (state) => {
+    debugger
     return {
-        lists 
+        lists: state.lists.lists
     }
 }
 
